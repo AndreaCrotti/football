@@ -1,6 +1,8 @@
 (ns football.engine-test
   (:require [football.engine :as engine]
-            [clojure.test :as t]))
+            #?(:clj [clojure.test :as t]
+               :cljs [cljs.test :as t :include-macros true])))
+
 
 ;; TODO: add tests using test.check since mos tof the stuff can be purely tested
 

@@ -4,9 +4,9 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :source-paths ["src/clj"]
+  :source-paths ["src/clj" "src/cljc"]
 
-  :test-paths ["test/clj"]
+  :test-paths ["test/clj" "test/cljc"]
 
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.122" :scope "provided"]
@@ -46,13 +46,13 @@
 
   :uberjar-name "football.jar"
 
-  :cljsbuild {:builds {:app {:source-paths ["src/cljs"]
+  :cljsbuild {:builds {:app {:source-paths ["src/cljs" "src/cljc"]
                              :compiler {:output-to     "resources/public/js/app.js"
                                         :output-dir    "resources/public/js/out"
                                         :source-map    "resources/public/js/out.js.map"
                                         :preamble      ["react/react.min.js"]
                                         :optimizations :none
-                                        :pretty-print  true}}}}
+                                        :pretty-print true}}}}
 
   :profiles {:dev {:source-paths ["env/dev/clj"]
                    :test-paths ["test/clj"]
@@ -78,19 +78,8 @@
                                            "text/html" 0}}
 
                    :cljsbuild {:test-commands { "test" ["phantomjs" "env/test/js/unit-test.js" "env/test/unit-test.html"] }
-                               ;; Each entry in the :crossovers vector describes a Clojure namespace
-                               ;; that is meant to be used with the ClojureScript code as well.
-                               ;; The files that make up this namespace will be automatically copied
-                               ;; into the ClojureScript source path whenever they are modified.
-                               :crossovers [football.engine football.game]
-                               ;; Set the path into which the crossover namespaces will be copied.
-                               :crossover-path "football-logic-cljs"
-                               ;; Set this to true to allow the :crossover-path to be copied into
-                               ;; the JAR file (if hooks are enabled).
-                               :crossover-jar false
-
                                :builds {:app {:source-paths ["env/dev/cljs"]}
-                                        :test {:source-paths ["src/cljs" "test/cljs"]
+                                        :test {:source-paths ["src/cljs" "test/cljs" "src/cljc" "test/cljc"]
                                                :compiler {:output-to     "resources/public/js/app_test.js"
                                                           :output-dir    "resources/public/js/test"
                                                           :source-map    "resources/public/js/test.js.map"
