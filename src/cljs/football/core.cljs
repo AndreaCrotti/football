@@ -4,7 +4,19 @@
 
 (enable-console-print!)
 
-(defonce app-state (atom {:text "Hello Chestnut!"}))
+(def players
+  [{:name "holly" :shoot 10}
+   {:name "benji" :shoot 8}])
+
+(nth players 1)
+
+
+(defonce app-state (atom {:text "Football selection"}))
+
+(defn new-player-view [dest owner]
+  (om/component
+   (dom/div nil
+            (dom/h3 nil "Add new player"))))
 
 (defn main []
   (om/root

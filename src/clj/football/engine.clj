@@ -24,15 +24,29 @@
    :skills skills
    :position position})
 
+
+(defn pick-one-one [xs]
+  "Interleave a list picking one from each"
+  (let [size (count xs)
+        middle (/ size 2)
+        evens (for [idx (range middle)] (nth xs (* idx 2)))
+        odds (for [idx (range middle)] (nth xs (+ 1 (* idx 2))))]
+
+    (concat evens odds)))
+
 (defn order-players [players]
+  "Order players putting the best players first"
   (->> players
        (sort-by #(apply + (vals (:skills %))))
        (reverse)))
 
 (defn make-teams [players]
-  "Create the two opposing teams"
+  "Create the two opposing teams by picking one at a time"
   (when (even? (count players))
-    (let [middle (/ (count players) 2)]
-      (list (take middle players) (drop middle players)))))
+    (let [ordered-players (order-players players)
+          middle (/ (count players) 2)
+          picked (pick-one-one ordered-players)]
+
+      (list (take middle picked) (drop middle picked)))))
 
 ;;TODO: first simple implementation is the greedy choice of best players

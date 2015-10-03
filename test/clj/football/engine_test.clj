@@ -2,7 +2,8 @@
   (:require [football.engine :as engine]
             [clojure.test :as t]))
 
-;; TODO: use recursion just for fun not because is actually useful
+;; TODO: add tests using test.check since mos tof the stuff can be purely tested
+
 (defn- random-skills []
   (apply merge (for [skill engine/skills] {skill (rand-int engine/RANKING-RANGE)})))
 
@@ -30,3 +31,7 @@
                                :attack)]
 
     (t/is (= (engine/order-players [p1 p2]) [p2 p1]))))
+
+(t/deftest pick-intersperse-test
+  (let [v1 '(1 2 3 4)]
+    (t/is (= (engine/pick-one-one v1) '(1 3 2 4)))))
