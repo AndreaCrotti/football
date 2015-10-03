@@ -17,7 +17,8 @@
                  [compojure "1.4.0"]
                  [enlive "1.1.6"]
                  [org.omcljs/om "0.9.0"]
-                 [environ "1.0.0"]]
+                 [environ "1.0.0"]
+                 [org.clojure/test.check "0.8.2"]]
 
   :plugins [[lein-cljsbuild "1.0.5"]
             [lein-environ "1.0.0"]]
