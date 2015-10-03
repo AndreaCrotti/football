@@ -17,7 +17,7 @@
                  [compojure "1.4.0"]
                  [enlive "1.1.6"]
                  [org.omcljs/om "0.9.0"]
-                 [environ "1.0.0"]
+                 [environ "1.0.1"]
                  [org.clojure/test.check "0.8.2"]]
 
   :plugins [[lein-cljsbuild "1.0.5"]
@@ -38,10 +38,10 @@
   :profiles {:dev {:source-paths ["env/dev/clj"]
                    :test-paths ["test/clj"]
 
-                   :dependencies [[figwheel "0.3.9"]
-                                  [figwheel-sidecar "0.3.9"]
+                   :dependencies [[figwheel "0.4.0"]
+                                  [figwheel-sidecar "0.4.0"]
                                   [com.cemerick/piggieback "0.2.1"]
-                                  [org.clojure/tools.nrepl "0.2.10"]
+                                  [org.clojure/tools.nrepl "0.2.11"]
                                   [weasel "0.7.0"]]
 
                    :repl-options {:init-ns football.server
