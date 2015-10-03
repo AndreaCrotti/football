@@ -1,0 +1,15 @@
+[{:name "P1"
+  :skills {:control 3
+           :speed 3
+           :tackle 4
+           :dribbling 10
+           :shoot 4}
+  :position :attack}
+
+ {:name "P2"
+  :skills {:control 3
+           :speed 3
+           :tackle 4
+           :dribbling 10
+           :shoot 4}
+  :position :attack}]
