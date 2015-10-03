@@ -21,7 +21,6 @@
         players (load-file (-> options :arguments (first))) ; it really behave better
         teams (engine/make-teams players)]
 
-    (clojure.pprint/pprint players)
-    (print "Team number one = " (team-names (first teams)))
-    (print "Team number two = " (team-names (second teams)))))
+    (println "Team number one = " (team-names (first teams)))
+    (println "Team number two = " (team-names (second teams)))))
 
