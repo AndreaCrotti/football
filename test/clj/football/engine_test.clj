@@ -7,6 +7,15 @@
 (defn- random-skills []
   (apply merge (for [skill engine/skills] {skill (rand-int engine/RANKING-RANGE)})))
 
+(t/deftest make-player-test
+  (t/testing "Invalid arguments given in"
+    (t/is (thrown? RuntimeException
+                   (engine/make-player "name" {:control 10} :attack))))
+
+  (t/testing "Valid player generation"
+    (let [player (engine/make-player "name" (random-skills) :defense)]
+      (t/is (= (:position player) :defense)))))
+
 (t/deftest team-selection-test
   ;;TODO: check that passing an odd number gives an error
   (t/testing "Simple selection"

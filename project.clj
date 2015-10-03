@@ -10,6 +10,15 @@
 
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.122" :scope "provided"]
+                 [devcards "0.2.0-2"]
+
+                 [org.clojure/core.match "0.3.0-alpha4"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+                 [org.clojure/core.memoize "0.5.7"]
+                 [org.clojure/tools.cli "0.3.3"]
+                 [org.clojure/data.json "0.2.6"]
+                 [org.clojure/core.typed "0.3.11"]
+
                  [ring "1.4.0"]
                  [ring/ring-defaults "0.1.5"]
                  [slester/ring-browser-caching "0.1.1"]
@@ -18,8 +27,18 @@
                  [enlive "1.1.6"]
                  [org.omcljs/om "0.9.0"]
                  [environ "1.0.1"]
-                 [org.clojure/test.check "0.8.2"]]
+                 [org.clojure/test.check "0.8.2"]
 
+                 [org.xerial/sqlite-jdbc "3.8.11.1"]
+                 [org.postgresql/postgresql "9.2-1003-jdbc4"]
+                 [org.clojure/java.jdbc "0.4.1"]
+                 [yesql "0.5.0"]
+
+                 [jarohen/phoenix "0.1.2"]
+                 [com.stuartsierra/component "0.2.3"]
+
+                 [prismatic/schema "0.4.4"]]
+  
   :plugins [[lein-cljsbuild "1.0.5"]
             [lein-environ "1.0.0"]]
 
@@ -59,6 +78,17 @@
                                            "text/html" 0}}
 
                    :cljsbuild {:test-commands { "test" ["phantomjs" "env/test/js/unit-test.js" "env/test/unit-test.html"] }
+                               ;; Each entry in the :crossovers vector describes a Clojure namespace
+                               ;; that is meant to be used with the ClojureScript code as well.
+                               ;; The files that make up this namespace will be automatically copied
+                               ;; into the ClojureScript source path whenever they are modified.
+                               :crossovers [football.engine football.game]
+                               ;; Set the path into which the crossover namespaces will be copied.
+                               :crossover-path "football-logic-cljs"
+                               ;; Set this to true to allow the :crossover-path to be copied into
+                               ;; the JAR file (if hooks are enabled).
+                               :crossover-jar false
+
                                :builds {:app {:source-paths ["env/dev/cljs"]}
                                         :test {:source-paths ["src/cljs" "test/cljs"]
                                                :compiler {:output-to     "resources/public/js/app_test.js"

@@ -1,4 +1,5 @@
-(ns football.engine)
+(ns football.engine
+  (:require [schema.core :as s]))
 
 (def RANKING-RANGE 10)
 
@@ -17,27 +18,46 @@
    :defense
    :middle])
 
+(def Skills
+  "Schema for skills available"
+  {:control s/Int
+   :speed s/Int
+   :dribbling s/Int
+   :shoot s/Int
+   :tackle s/Int})
+
+(def Player
+  {:name s/Str
+   :skills Skills
+   :position (apply s/enum positions)})
+
+
 (defn make-player [name skills position]
-  ;;TODO: how do I enforce position to be always something from
-  ;;a given list?
+  {:post [(s/validate Player %)]}
+  "Create a player post validating on the right format"
+
   {:name name
    :skills skills
    :position position})
-
 
 (defn pick-one-one [xs]
   "Interleave a list picking one from each"
   (let [size (count xs)
         middle (/ size 2)
+        ;; there is probably an esier way to generate this
         evens (for [idx (range middle)] (nth xs (* idx 2)))
         odds (for [idx (range middle)] (nth xs (+ 1 (* idx 2))))]
 
     (concat evens odds)))
 
+(defn rank-player [player]
+  "Return a single number to rank a given player"
+  (apply + (vals (:skills player))))
+
 (defn order-players [players]
   "Order players putting the best players first"
   (->> players
-       (sort-by #(apply + (vals (:skills %))))
+       (sort-by rank-player)
        (reverse)))
 
 (defn make-teams [players]
