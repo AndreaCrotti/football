@@ -16,7 +16,6 @@
   (map :name team))
 
 (defn -main [& args]
-  (clojure.pprint/pprint args)
   (let [options (parse-opts args cli-options)
         players (load-file (-> options :arguments (first))) ; it really behave better
         teams (engine/make-teams players)]
