@@ -75,7 +75,7 @@
 (defn list-teams [players]
   "Generate all the possible teams"
   (for [team-permutation (combo/permutations players)]
-    (set (map set (partition 2 team-permutation)))))
+    (set (map set (partition (/ (count team-permutation) 2) team-permutation)))))
 
 (defn rank-team [team]
   "Rank a single team simply by adding up all the scores from all the players"
@@ -92,4 +92,4 @@
         augmented (for [sel all-selections] {:selection sel :ranking (rank-selection sel)})
         best-selections (#(sort-by :ranking %) augmented)]
 
-    (take best-teams (reverse best-selections))))
+    (take best-teams best-selections)))

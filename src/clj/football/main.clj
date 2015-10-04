@@ -33,5 +33,6 @@
     ;; teams (engine/make-teams players)
     
     (doseq [sel selections]
+      (println "---- another selection ----")
       ;; (clojure.pprint/pprint sel)
       (println (selection-repr sel)))))
