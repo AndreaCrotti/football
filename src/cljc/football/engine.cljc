@@ -1,5 +1,6 @@
 (ns football.engine
-  (:require [schema.core :as s]))
+  (:require [schema.core :as s]
+            [clojure.math.combinatorics :as combo]))
 
 (def RANKING-RANGE 10)
 
@@ -70,3 +71,25 @@
       (list (take middle picked) (drop middle picked)))))
 
 ;;TODO: first simple implementation is the greedy choice of best players
+
+(defn list-teams [players]
+  "Generate all the possible teams"
+  (for [team-permutation (combo/permutations players)]
+    (set (map set (partition 2 team-permutation)))))
+
+(defn rank-team [team]
+  "Rank a single team simply by adding up all the scores from all the players"
+  (apply + (map rank-player team)))
+
+(defn rank-selection [teams]
+  "Given a team return how balanced it is by looking at the scores"
+  (Math/abs (- (rank-team (first teams))
+               (rank-team (second teams)))))
+
+(defn brute-force-selection [players best-teams]
+  "Return the first number of best teams by using brute force"
+  (let [all-selections (set (list-teams players))
+        augmented (for [sel all-selections] {:selection sel :ranking (rank-selection sel)})
+        best-selections (#(sort-by :ranking %) augmented)]
+
+    (take best-teams (reverse best-selections))))

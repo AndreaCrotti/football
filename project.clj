@@ -19,6 +19,7 @@
                  [org.clojure/tools.cli "0.3.3"]
                  [org.clojure/data.json "0.2.6"]
                  [org.clojure/core.typed "0.3.11"]
+                 [org.clojure/math.combinatorics "0.1.1"]
 
                  [ring "1.4.0"]
                  [ring/ring-defaults "0.1.5"]

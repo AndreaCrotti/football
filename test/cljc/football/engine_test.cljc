@@ -4,10 +4,30 @@
                :cljs [cljs.test :as t :include-macros true])))
 
 
+(def player1 {:name "P1"
+               :skills {:control 3
+                        :speed 3
+                        :tackle 4
+                        :dribbling 10
+                        :shoot 4}
+               :position :attack})
+
+(def player2  {:name "P2"
+               :skills {:control 3
+                        :speed 3
+                        :tackle 4
+                        :dribbling 10
+                        :shoot 4}
+               :position :attack})
+
 ;; TODO: add tests using test.check since mos tof the stuff can be purely tested
 
 (defn- random-skills []
   (apply merge (for [skill engine/skills] {skill (rand-int engine/RANKING-RANGE)})))
+
+(defn- random-players [n]
+  (for [idx (range n)]
+    (engine/make-player (str "Player" n) (random-skills) (rand-nth engine/positions))))
 
 (t/deftest make-player-test
   (t/testing "Invalid arguments given in"
@@ -46,3 +66,15 @@
 (t/deftest pick-intersperse-test
   (let [v1 '(1 2 3 4)]
     (t/is (= (engine/pick-one-one v1) '(1 3 2 4)))))
+
+(t/deftest iterate-all-teams-test
+  (t/testing "Four players can generate three possible teams"
+    (let [four-players (random-players 4)
+          teams (set (engine/list-teams four-players))]
+      (t/is (= (count teams) 3)))))
+
+(t/deftest rank-team-test
+  (t/testing "Not balanced team selection"
+    (let [team1 [player1]
+          team2 [player2]]
+      (t/is (= 0 (engine/rank-selection [team1 team2]))))))
