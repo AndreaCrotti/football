@@ -1,5 +1,6 @@
 # football
 
+[![Build Status](https://travis-ci.org/AndreaCrotti/football.png)](https://travis-ci.org/AndreaCrotti/football)
 
 ## Development
 
