@@ -11,10 +11,14 @@
 ;; some teams
 
 (def cli-options
-  [["-c" "--config" "File containing all the rankings"]
+  [["-r" "--rankings RANKINGS" "File containing all the rankings"]
 
-   ["-s" "--strategy" "Use greedy or brute force approach"
+   ["-l" "--player-list PLAYERS_LIST" "File containing the players playing"]
+
+   ["-s" "--strategy STRATEGY" "Use greedy or brute force approach"
     :parse-fn keyword
+    :default :greedy
+    :required true
     :validate [#(contains? strategies (keyword %)) "Invalid strategy passed in"]]])
     
 (defn team-names [team]
@@ -27,12 +31,15 @@
 
 (defn -main [& args]
   (let [options (parse-opts args cli-options)
-        players (load-file (-> options :arguments (first))) ; it really behave better
-        selections (engine/brute-force-selection players 3)]
+        rankings(load-file (-> options :options :rankings)) ; it really behave better
+        players (load-file (-> options :options :player-list))
+        players-rankings (filter #(contains? (set players) (:name %)) rankings)
+        selections (engine/brute-force-selection players-rankings 3)]
     ;; use this information 
     ;; teams (engine/make-teams players)
     
     (doseq [sel selections]
-      (println "---- another selection ----")
+      (println "------------")
       ;; (clojure.pprint/pprint sel)
-      (println (selection-repr sel)))))
+      (println (selection-repr sel))
+      (println "------------"))))
