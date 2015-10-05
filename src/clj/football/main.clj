@@ -22,7 +22,7 @@
     :validate [#(contains? strategies (keyword %)) "Invalid strategy passed in"]]])
     
 (defn team-names [team]
-  (map :name team))
+  (sort (map :name team)))
 
 (defn selection-repr [sel]
   (str "- team1:  " (clojure.string/join ", " (team-names (first (:selection sel))))

@@ -72,6 +72,16 @@
 
 ;;TODO: first simple implementation is the greedy choice of best players
 
+(defn list-teams-combo [players]
+  "List all the possible team combinations"
+  (let [players-count (count players)
+        size (/ (combo/count-combinations players 2) 2)
+        team-size (/ (count players) 2)]
+
+    (for [team1 (take size (combo/combinations players team-size))]
+      (list team1 (into () (clojure.set/difference (set players) team1))))))
+
+
 (defn list-teams [players]
   "Generate all the possible teams"
   (for [team-permutation (combo/permutations players)]
@@ -86,10 +96,23 @@
   (Math/abs (- (rank-team (first teams))
                (rank-team (second teams)))))
 
+(defn rankings-from-names [names rankings]
+  (filter #(contains? (set names) (:name %)) rankings))
+
+(defn rankings-to-names [rankings]
+  (map :name rankings))
+
+(defn names-as-keys [rankings]
+  "Convert to a Map keying on the name of the player"
+  (apply merge
+         (for [rank rankings]
+           ({:name rank} rank))))
+
 (defn brute-force-selection [players best-teams]
   "Return the first number of best teams by using brute force"
-  (let [all-selections (set (list-teams players))
-        augmented (for [sel all-selections] {:selection sel :ranking (rank-selection sel)})
+  (let [all-selections (list-teams-combo players)
+        augmented (for [sel all-selections]
+                    {:selection sel :ranking (rank-selection sel)})
         best-selections (#(sort-by :ranking %) augmented)]
 
     (take best-teams best-selections)))

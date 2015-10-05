@@ -73,8 +73,21 @@
           teams (set (engine/list-teams four-players))]
       (t/is (= (count teams) 3)))))
 
+(t/deftest list-all-teams-combo-test
+  (t/testing "4 players"
+    (t/is (= (count (engine/list-teams-combo (range 4))) 3))))
+
 (t/deftest rank-team-test
   (t/testing "Not balanced team selection"
     (let [team1 [player1]
           team2 [player2]]
       (t/is (= 0 (engine/rank-selection [team1 team2]))))))
+
+(t/deftest brute-force-selection-test
+  (t/testing "Two players only"
+    (let [players [player1 player2]]
+      (t/is (= (count (engine/brute-force-selection players 1)) 1)))))
+
+(t/deftest rankings-from-names-test
+  (t/testing "Simple conversion"
+    (t/is (= (engine/rankings-from-names ["P1"] [player1 player2]) [player1]))))
