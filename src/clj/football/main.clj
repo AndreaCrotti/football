@@ -34,10 +34,12 @@
         rankings(load-file (-> options :options :rankings)) ; it really behave better
         players (load-file (-> options :options :player-list))
         players-rankings (filter #(contains? (set players) (:name %)) rankings)
-        selections (engine/brute-force-selection players-rankings 3)]
-    ;; use this information 
-    ;; teams (engine/make-teams players)
+        strategy (-> options :options :strategy)
+        selections (cond
+                     (= strategy :greedy) [(engine/make-teams players-rankings)]
+                     (= strategy :brute-force) (engine/brute-force-selection players-rankings 3))]
     
+    (clojure.pprint/pprint selections)
     (doseq [sel selections]
       (println "------------")
       ;; (clojure.pprint/pprint sel)
