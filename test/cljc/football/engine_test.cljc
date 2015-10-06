@@ -67,15 +67,9 @@
   (let [v1 '(1 2 3 4)]
     (t/is (= (engine/pick-one-one v1) '(1 3 2 4)))))
 
-(t/deftest iterate-all-teams-test
-  (t/testing "Four players can generate three possible teams"
-    (let [four-players (random-players 4)
-          teams (set (engine/list-teams four-players))]
-      (t/is (= (count teams) 3)))))
-
 (t/deftest list-all-teams-combo-test
   (t/testing "4 players"
-    (t/is (= (count (engine/list-teams-combo (range 4))) 3))))
+    (t/is (= (count (engine/list-teams (range 4))) 3))))
 
 (t/deftest rank-team-test
   (t/testing "Not balanced team selection"
@@ -86,7 +80,7 @@
 (t/deftest brute-force-selection-test
   (t/testing "Two players only"
     (let [players [player1 player2]]
-      (t/is (= (count (engine/brute-force-selection players 1)) 1)))))
+      (t/is (= (count (engine/brute-force-selection players)) 1)))))
 
 (t/deftest rankings-from-names-test
   (t/testing "Simple conversion"

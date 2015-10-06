@@ -15,6 +15,10 @@
 
    ["-l" "--player-list PLAYERS_LIST" "File containing the players playing"]
 
+   ["-n" "--selection-number SELECTION_NUMBER" "Number of best selections to show"
+    :parse-fn #(. Integer parseInt %)
+    :default 3]
+
    ["-s" "--strategy STRATEGY" "Use greedy or brute force approach"
     :parse-fn keyword
     :default :greedy
@@ -29,15 +33,15 @@
        "\n- team2: " (clojure.string/join ", " (team-names (second (:selection sel))))))
 
 (defn -main [& args]
-  (let [options (parse-opts args cli-options)
-        rankings(load-file (-> options :options :rankings)) ; it really behave better
-        players (load-file (-> options :options :player-list))
+  (let [options (:options (parse-opts args cli-options))
+        rankings(load-file (-> options :rankings)) ; it really behave better
+        players (load-file (-> options :player-list))
         players-rankings (filter #(contains? (set players) (:name %)) rankings)
-        selections (engine/brute-force-selection players-rankings 3)]
+        selections (engine/brute-force-selection players-rankings)]
     ;; use this information 
     ;; teams (engine/make-teams players)
     
-    (doseq [sel selections]
+    (doseq [sel (take (:selection-number options) selections)]
       (println "------------")
       ;; (clojure.pprint/pprint sel)
       (println (selection-repr sel))
