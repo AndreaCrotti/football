@@ -26,8 +26,7 @@
 
 (defn selection-repr [sel]
   (str "- team1:  " (clojure.string/join ", " (team-names (first (:selection sel))))
-       "\n-team2: " (clojure.string/join ", " (team-names (second (:selection sel))))
-       "\n-difference = " (:ranking sel)))
+       "\n- team2: " (clojure.string/join ", " (team-names (second (:selection sel))))))
 
 (defn -main [& args]
   (let [options (parse-opts args cli-options)
