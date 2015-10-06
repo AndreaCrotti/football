@@ -2,12 +2,20 @@
 
 [![Build Status](https://travis-ci.org/AndreaCrotti/football.png)](https://travis-ci.org/AndreaCrotti/football)
 
+## TODO
+
+- add some UI to be able to input players;
+- store players with their scores into a database
+- use core.async for spawning multiple tasks
+- model different companies (with admin roles in them)
+- add authentication to the UI
+
 ## Backend only
 
 Just run it with
 
 ```
-lein run -c rankings_file.edn
+lein run -r rankings_file.edn -l player_list.edn
 ```
 
 ## Gui
