@@ -10,7 +10,8 @@
             [ring.middleware.browser-caching :refer [wrap-browser-caching]]
             [ring.middleware.gzip :refer [wrap-gzip]]
             [environ.core :refer [env]]
-            [ring.adapter.jetty :refer [run-jetty]])
+            [ring.adapter.jetty :refer [run-jetty]]
+            [football.handlers :as handlers])
   (:gen-class))
 
 (deftemplate page (io/resource "index.html") []
@@ -46,4 +47,3 @@
 
 (defn -main [& [port]]
   (run port))
-
