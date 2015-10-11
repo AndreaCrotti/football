@@ -12,6 +12,7 @@
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.122" :scope "provided"]
                  [devcards "0.2.0-2"]
+                 [prismatic/plumbing "0.5.0"]
 
                  [org.clojure/core.match "0.3.0-alpha4"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
