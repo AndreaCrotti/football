@@ -11,8 +11,8 @@
 
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.122" :scope "provided"]
-                 [devcards "0.2.0-2"]
                  [prismatic/plumbing "0.5.0"]
+                 [devcards "0.2.0-3"]
 
                  [org.clojure/core.match "0.3.0-alpha4"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
@@ -32,15 +32,15 @@
                  [environ "1.0.1"]
                  [org.clojure/test.check "0.8.2"]
 
-                 [org.xerial/sqlite-jdbc "3.8.11.1"]
+                 [org.xerial/sqlite-jdbc "3.8.11.2"]
                  [org.postgresql/postgresql "9.2-1003-jdbc4"]
-                 [org.clojure/java.jdbc "0.4.1"]
-                 [yesql "0.5.0"]
+                 [org.clojure/java.jdbc "0.4.2"]
+                 [yesql "0.5.1"]
 
                  [jarohen/phoenix "0.1.2"]
-                 [com.stuartsierra/component "0.2.3"]
+                 [com.stuartsierra/component "0.3.0"]
 
-                 [prismatic/schema "0.4.4"]]
+                 [prismatic/schema "1.0.1"]]
   
   :plugins [[lein-cljsbuild "1.0.5"]
             [lein-environ "1.0.0"]]
@@ -60,8 +60,8 @@
   :profiles {:dev {:source-paths ["env/dev/clj"]
                    :test-paths ["test/clj"]
 
-                   :dependencies [[figwheel "0.4.0"]
-                                  [figwheel-sidecar "0.4.0"]
+                   :dependencies [[figwheel "0.4.1"]
+                                  [figwheel-sidecar "0.4.1"]
                                   [com.cemerick/piggieback "0.2.1"]
                                   [org.clojure/tools.nrepl "0.2.11"]
                                   [weasel "0.7.0"]]
