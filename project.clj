@@ -10,16 +10,16 @@
   :test-paths ["test/clj" "test/cljc"]
 
   :dependencies [[org.clojure/clojure "1.7.0"]
-                 [org.clojure/clojurescript "1.7.122" :scope "provided"]
-                 [prismatic/plumbing "0.5.0"]
-                 [devcards "0.2.0-3"]
+                 [org.clojure/clojurescript "1.7.170" :scope "provided"]
+                 [prismatic/plumbing "0.5.2"]
+                 [devcards "0.2.1"]
 
                  [org.clojure/core.match "0.3.0-alpha4"]
-                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [org.clojure/core.memoize "0.5.7"]
+                 [org.clojure/core.async "0.2.374"]
+                 [org.clojure/core.memoize "0.5.8"]
                  [org.clojure/tools.cli "0.3.3"]
                  [org.clojure/data.json "0.2.6"]
-                 [org.clojure/core.typed "0.3.11"]
+                 [org.clojure/core.typed "0.3.19"]
                  [org.clojure/math.combinatorics "0.1.1"]
 
                  [ring "1.4.0"]
@@ -30,7 +30,7 @@
                  [enlive "1.1.6"]
                  [org.omcljs/om "0.9.0"]
                  [environ "1.0.1"]
-                 [org.clojure/test.check "0.8.2"]
+                 [org.clojure/test.check "0.9.0"]
 
                  [org.xerial/sqlite-jdbc "3.8.11.2"]
                  [org.postgresql/postgresql "9.2-1003-jdbc4"]
@@ -40,7 +40,7 @@
                  [jarohen/phoenix "0.1.2"]
                  [com.stuartsierra/component "0.3.0"]
 
-                 [prismatic/schema "1.0.1"]]
+                 [prismatic/schema "1.0.3"]]
   
   :plugins [[lein-cljsbuild "1.0.5"]
             [lein-environ "1.0.0"]]
@@ -60,10 +60,10 @@
   :profiles {:dev {:source-paths ["env/dev/clj"]
                    :test-paths ["test/clj"]
 
-                   :dependencies [[figwheel "0.4.1"]
-                                  [figwheel-sidecar "0.4.1"]
+                   :dependencies [[figwheel "0.5.0-1"]
+                                  [figwheel-sidecar "0.5.0-1"]
                                   [com.cemerick/piggieback "0.2.1"]
-                                  [org.clojure/tools.nrepl "0.2.11"]
+                                  [org.clojure/tools.nrepl "0.2.12"]
                                   [weasel "0.7.0"]]
 
                    :repl-options {:init-ns football.server
