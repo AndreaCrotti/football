@@ -60,8 +60,8 @@
   :profiles {:dev {:source-paths ["env/dev/clj"]
                    :test-paths ["test/clj"]
 
-                   :dependencies [[figwheel "0.5.0-1"]
-                                  [figwheel-sidecar "0.5.0-1"]
+                   :dependencies [[figwheel "0.5.0-2"]
+                                  [figwheel-sidecar "0.5.0-2"]
                                   [com.cemerick/piggieback "0.2.1"]
                                   [org.clojure/tools.nrepl "0.2.12"]
                                   [weasel "0.7.0"]]
