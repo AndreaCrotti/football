@@ -38,7 +38,7 @@
                  [yesql "0.5.1"]
 
                  [jarohen/phoenix "0.1.2"]
-                 [com.stuartsierra/component "0.3.0"]
+                 [com.stuartsierra/component "0.3.1"]
 
                  [prismatic/schema "1.0.3"]]
   

@@ -1,0 +1,58 @@
+---
+- hosts: local
+  connection: local
+
+  tasks:
+
+  - name: data container
+    docker:
+      name: mydata
+      image: busybox
+      state: present
+      volumes:
+      - /data
+
+  # enable redis if actually needed
+  # - name: redis container
+  #   docker:
+  #     name: myredis
+  #     image: redis
+  #     command: redis-server --appendonly yes
+  #     state: started
+  #     expose:
+  #     - 6379
+  #     volumes_from:
+  #     - mydata
+
+  - name: Database
+    docker:
+      name: database
+      image: postgres:9.4
+      state: started
+      # create some users and test databases here automatically
+
+  - name: Football
+    docker:
+      name: Football
+      image: clojure
+      state: reloaded
+      pull: always
+      restart_policy: always
+      links:
+        # - "myredis:aliasredis"
+        - "database:database"
+
+# - name: Application
+# - name: main app
+#   docker:
+#     name: holidaysapp
+#     image: someuser/appimage
+#     state: reloaded
+#     pull: always
+#     links:
+#     - "myredis:aliasedredis"
+#     ports:
+#     - "8080:9000"
+#     - "127.0.0.1:8081:9001/udp"
+#     env:
+#         SECRET_KEY: ssssh

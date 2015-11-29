@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/AndreaCrotti/football.png)](https://travis-ci.org/AndreaCrotti/football)
 
+## Infrastructure
+
+Ansible and Docker to set up the database and run all the tests.
+
 ## TODO
 
 - add some UI to be able to input players;
