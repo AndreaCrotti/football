@@ -36,6 +36,7 @@
                  [org.postgresql/postgresql "9.2-1003-jdbc4"]
                  [org.clojure/java.jdbc "0.4.2"]
                  [yesql "0.5.1"]
+                 [ragtime "0.5.2"]
 
                  [jarohen/phoenix "0.1.2"]
                  [com.stuartsierra/component "0.3.1"]
@@ -43,6 +44,7 @@
                  [prismatic/schema "1.0.3"]]
   
   :plugins [[lein-cljsbuild "1.0.5"]
+            [ragtime/ragtime.lein "0.3.9"]
             [lein-environ "1.0.0"]]
 
   :min-lein-version "2.5.0"
