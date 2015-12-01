@@ -15,11 +15,13 @@
   (:gen-class))
 
 (deftemplate page (io/resource "index.html") []
-  [:body] (if is-dev? inject-devmode-html identity))
+  [:body]
+  (if is-dev? inject-devmode-html identity))
 
 (defroutes routes
   (resources "/")
   (resources "/react" {:root "react"})
+  (GET "/add-player" req (handlers/add-player req))
   (GET "/*" req (page)))
 
 (defn- wrap-browser-caching-opts [handler] (wrap-browser-caching handler (or (env :browser-caching) {})))
