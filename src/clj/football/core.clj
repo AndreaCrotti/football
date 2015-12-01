@@ -10,10 +10,6 @@
 (def db
   (pg/pool :host "localhost" :user "football" :dbname "football" :password "football"))
 
-
-(yes/defqueries "sql/queries.sql" {:connection db})
-(yes/defqueries "sql/inserts.sql" {:connection db})
-
 (def postgres-uri
   "jdbc:postgresql://localhost:5432/football?user=football&password=football")
 

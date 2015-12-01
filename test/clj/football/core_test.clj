@@ -2,7 +2,9 @@
   (:require [clojure.set :as set]
             [clojure.test :as t]
             [clojure.data.json :as json]
-            [football.core :as sut]))
+            [football.core :as sut]
+            [football.players :as pl]
+            [football.teams :as th]))
 
 (defn football-db [f]
   (sut/migrate)
@@ -24,14 +26,14 @@
 
 (t/deftest test-using-db
   (t/testing "Insert and get players"
-    (sut/insert-player<! (random-player))
+    (pl/insert-player<! (random-player))
 
-    (let [res (sut/fetch-players)]
+    (let [res (pl/fetch-players)]
       (t/is (= (count res) 1))))
 
   (t/testing "Create a new team with two players"
-    (let [p1 (sut/insert-player<! (random-player))
-          p2 (sut/insert-player<! (random-player))
-          team (sut/insert-team<! {:players (teams [p1 p2])})
-          all-teams (sut/fetch-teams)]
+    (let [p1 (pl/insert-player<! (random-player))
+          p2 (pl/insert-player<! (random-player))
+          team (th/insert-team<! {:players (teams [p1 p2])})
+          all-teams (th/fetch-teams)]
       (t/is (= (count all-teams) 1)))))
