@@ -34,8 +34,8 @@
 
 (defn -main [& args]
   (let [options (:options (parse-opts args cli-options))
-        rankings(load-file (-> options :rankings)) ; it really behave better
-        players (load-file (-> options :player-list))
+        rankings(load-file (:rankings options)) ; it really behave better
+        players (load-file (:player-list options))
         players-rankings (filter #(contains? (set players) (:name %)) rankings)
         selections (engine/brute-force-selection players-rankings)]
     ;; use this information 
