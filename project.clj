@@ -37,6 +37,7 @@
                  [org.clojure/java.jdbc "0.4.2"]
                  [yesql "0.5.1"]
                  [ragtime "0.5.2"]
+                 [ragtime/ragtime.lein "0.3.9"]
 
                  [jarohen/phoenix "0.1.2"]
                  [com.stuartsierra/component "0.3.1"]
@@ -46,6 +47,9 @@
   :plugins [[lein-cljsbuild "1.0.5"]
             [ragtime/ragtime.lein "0.3.9"]
             [lein-environ "1.0.0"]]
+
+  :aliases {"migrate" ["run" "-m" "football.core/migrate"]
+            "rollback" ["run" "-m" "football.core/rollback"]}
 
   :min-lein-version "2.5.0"
 
