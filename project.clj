@@ -26,7 +26,12 @@
                  [ring/ring-defaults "0.1.5"]
                  [slester/ring-browser-caching "0.1.1"]
                  [bk/ring-gzip "0.1.1"]
+                 [metosin/ring-swagger "0.21.0"]
+                 [metosin/ring-swagger-ui "2.1.8-M1"]
+                 [metosin/ring-http-response "0.6.5"]
+                 [ring/ring-defaults "0.1.5"]
                  [compojure "1.4.0"]
+
                  [enlive "1.1.6"]
                  [org.omcljs/om "0.9.0"]
                  [environ "1.0.1"]
@@ -47,7 +52,8 @@
   
   :plugins [[lein-cljsbuild "1.0.5"]
             [ragtime/ragtime.lein "0.3.9"]
-            [lein-environ "1.0.0"]]
+            [lein-environ "1.0.0"]
+            [lein-ring "0.8.13"]]
 
   :aliases {"migrate" ["run" "-m" "football.core/migrate"]
             "rollback" ["run" "-m" "football.core/rollback"]}

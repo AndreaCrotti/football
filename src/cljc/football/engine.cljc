@@ -1,5 +1,6 @@
 (ns football.engine
-  (:require [schema.core :as s]                                                                                                               [clojure.math.combinatorics :as combo]))
+  (:require
+   [schema.core :as s]                                                                                                                 [clojure.math.combinatorics :as combo]))
 
 (def RANKING-RANGE 10)
 
