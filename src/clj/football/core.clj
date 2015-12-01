@@ -3,25 +3,19 @@
             [yesql.core :as yes]
             [environ.core :refer [env]]
             [ragtime.repl :as repl]
+            [clj-postgresql.core :as pg]
             [ragtime.jdbc :refer [sql-database load-resources]]))
 
 
-(def db {:classname "com.postgresql.jdbc.Driver"
-         :subprotocol "postgresql"
-         :subname (str "//localhost:5432/" (env :postgres-database))
-         :user (env :postgres-user)
-         :password (env :postgres-password)})
+(def db
+  (pg/pool :host "localhost" :user "football" :dbname "football" :password "football"))
 
 
 (yes/defqueries "sql/queries.sql" {:connection db})
+(yes/defqueries "sql/inserts.sql" {:connection db})
 
-(def postgres-uri-prod
-  (format "jdbc:postgresql://%s:%d/%s?user=%s&password=%s"
-          (env :postgres-host)
-          (env :postgres-port)
-          (env :postgres-database)
-          (env :postgres-user)
-          (env :postgres-password)))
+(def postgres-uri
+  "jdbc:postgresql://localhost:5432/football?user=football&password=football")
 
 (defn load-config []
   {:datastore (sql-database {:connection-uri postgres-uri})

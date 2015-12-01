@@ -12,6 +12,8 @@ CREATE TABLE players (
        name varchar(256),
        --TODO: this should probably be an enum or a relationship
        position varchar(10),
+       -- skills int references skills(id)
+       --TODO: use json if possible
        skills json
 );
 

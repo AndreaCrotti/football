@@ -23,7 +23,8 @@
 ;; TODO: add tests using test.check since mos tof the stuff can be purely tested
 
 (defn- random-skills []
-  (apply merge (for [skill engine/skills] {skill (rand-int engine/RANKING-RANGE)})))
+  (apply merge
+         (for [skill engine/skills] {skill (rand-int engine/RANKING-RANGE)})))
 
 (defn- random-players [n]
   (for [idx (range n)]

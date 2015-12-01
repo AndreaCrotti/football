@@ -34,6 +34,7 @@
 
                  [org.xerial/sqlite-jdbc "3.8.11.2"]
                  [org.postgresql/postgresql "9.2-1003-jdbc4"]
+                 [clj-postgresql "0.4.0"]
                  [org.clojure/java.jdbc "0.4.2"]
                  [yesql "0.5.1"]
                  [ragtime "0.5.2"]
