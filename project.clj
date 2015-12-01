@@ -10,7 +10,7 @@
   :test-paths ["test/clj" "test/cljc"]
 
   :dependencies [[org.clojure/clojure "1.7.0"]
-                 [org.clojure/clojurescript "1.7.170" :scope "provided"]
+                 [org.clojure/clojurescript "1.7.122" :scope "provided"]
                  [prismatic/plumbing "0.5.2"]
                  [devcards "0.2.1"]
 
@@ -67,10 +67,10 @@
   :profiles {:dev {:source-paths ["env/dev/clj"]
                    :test-paths ["test/clj"]
 
-                   :dependencies [[figwheel "0.5.0-2"]
-                                  [figwheel-sidecar "0.5.0-2"]
+                   :dependencies [[figwheel "0.3.9"]
+                                  [figwheel-sidecar "0.3.9"]
                                   [com.cemerick/piggieback "0.2.1"]
-                                  [org.clojure/tools.nrepl "0.2.12"]
+                                  [org.clojure/tools.nrepl "0.2.10"]
                                   [weasel "0.7.0"]]
 
                    :repl-options {:init-ns football.server
