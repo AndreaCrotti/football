@@ -5,3 +5,13 @@ jdk:
   - oraclejdk8
   - openjdk6
   - openjdk7
+
+addons:
+  postgresql: "9.4"
+
+services:
+  - postgresql
+
+
+before_script:
+  - psql -c 'CREATE ROLE football WITH PASSWORD \'football\'; CREATE DATABASE football OWNER football;' -U postgres
