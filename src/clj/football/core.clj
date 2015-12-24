@@ -8,10 +8,10 @@
 
 
 (def db
-  (pg/pool :host "localhost" :user "football" :dbname "football" :password "football"))
+  (pg/pool :host "localhost" :user "postgres" :dbname "football"))
 
 (def postgres-uri
-  "jdbc:postgresql://localhost:5432/football?user=football&password=football")
+  "jdbc:postgresql://localhost:5432/football?user=postgres")
 
 (defn load-config []
   {:datastore (sql-database {:connection-uri postgres-uri})
