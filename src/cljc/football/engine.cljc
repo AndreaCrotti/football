@@ -1,5 +1,6 @@
 (ns football.engine
   (:require
+   [clojure.set :as set]
    [schema.core :as s]                                                                                                                 [clojure.math.combinatorics :as combo]))
 
 (def RANKING-RANGE 10)
@@ -73,7 +74,7 @@
         team-size (/ (count players) 2)]
 
     (for [team1 (take size (combo/combinations players team-size))]
-      (list team1 (into () (clojure.set/difference (set players) team1))))))
+      (list team1 (into () (set/difference (set players) team1))))))
 
 (defn rank-team [team]
   "Rank a single team simply by adding up all the scores from all the players"
