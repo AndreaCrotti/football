@@ -22,9 +22,13 @@
 
 ;; TODO: add tests using test.check since mos tof the stuff can be purely tested
 
+;; TODO: is it possible to get this from the schema definition?
+(def all-skills [:control :speed :dribbling :shoot :tackle])
+
 (defn- random-skills []
-  (apply merge
-         (for [skill engine/skills] {skill (rand-int engine/RANKING-RANGE)})))
+  (engine/map->Skill
+   (apply merge
+          (for [skill all-skills] {skill (rand-int engine/RANKING-RANGE)}))))
 
 (defn- random-players [n]
   (for [idx (range n)]
@@ -33,7 +37,7 @@
 (t/deftest make-player-test
   (t/testing "Invalid arguments given in"
     (t/is (thrown? RuntimeException
-                   (engine/make-player "name" {:control 10} :attack))))
+                   (engine/make-player "name" (engine/make-skill {:control 10}) :attack))))
 
   (t/testing "Valid player generation"
     (let [player (engine/make-player "name" (random-skills) :defense)]
@@ -49,17 +53,17 @@
 
 
 (t/deftest players-ordering-test
-  (let [p1 (engine/make-player "p1" {:control 3
-                                     :speed 3
-                                     :dribbling 3
-                                     :shoot 3
-                                     :tackle 3}
+  (let [p1 (engine/make-player "p1" (engine/make-skill  {:control 3
+                                                         :speed 3
+                                                         :dribbling 3
+                                                         :shoot 3
+                                                         :tackle 3})
                                :attack)
-        p2 (engine/make-player "p2" {:control 3
-                                     :speed 4
-                                     :dribbling 3
-                                     :shoot 4
-                                     :tackle 4}
+        p2 (engine/make-player "p2" (engine/make-skill {:control 3
+                                                        :speed 4
+                                                        :dribbling 3
+                                                        :shoot 4
+                                                        :tackle 4})
                                :attack)]
 
     (t/is (= (engine/order-players [p1 p2]) [p2 p1]))))

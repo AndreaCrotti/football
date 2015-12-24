@@ -6,40 +6,34 @@
 
 ;; TODO: use schemas and protoypes for the logic here
 
-(def skills
-  "Useful metrics needed to select a given player"
-  [:control
-   :speed
-   :dribbling
-   :shoot
-   :tackle])
-
 (def positions
   [:attack
    :defense
    :middle])
 
-(def Skills
-  "Schema for skills available"
-  {:control s/Int
-   :speed s/Int
-   :dribbling s/Int
-   :shoot s/Int
-   :tackle s/Int})
+(s/defrecord Skill
+    [control :- s/Int
+     speed :- s/Int
+     dribbling :- s/Int
+     shoot :- s/Int
+     tackle :- s/Int])
 
-(def Player
-  {:name s/Str
-   :skills Skills
-   :position (apply s/enum positions)})
+(s/defrecord Player
+    [name :- s/Str
+     skills :- Skill
+     position :- (apply s/enum positions)])
 
+
+(defn make-skill [skills]
+  (map->Skill skills))
 
 (defn make-player [name skills position]
   {:post [(s/validate Player %)]}
-  "Create a player post validating on the right format"
-
-  {:name name
-   :skills skills
-   :position position})
+;  "Create a player post validating on the right format"
+  (map->Player
+   {:name name
+    :skills skills
+    :position position}))
 
 (defn pick-one-one [xs]
   "Interleave a list picking one from each"
