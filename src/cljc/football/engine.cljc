@@ -24,6 +24,10 @@
      skills :- Skill
      position :- (apply s/enum positions)])
 
+;; TODO: use the team record as well somehow
+(s/defrecord Team
+    [name :- s/Str
+     players :- [Player]])
 
 (defn make-skill [skills]
   (map->Skill skills))
