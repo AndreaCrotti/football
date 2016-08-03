@@ -8,10 +8,11 @@
 
 
 (def db
-  (pg/pool :host "localhost" :user "postgres" :dbname "football"))
+  (pg/pool :host "localhost" :user "football" :dbname "football" :password "football"))
 
+;; TODO: should use the env variables instead 
 (def postgres-uri
-  "jdbc:postgresql://localhost:5432/football?user=postgres")
+  "jdbc:postgresql://localhost:5432/football?user=football&password=football")
 
 (defn load-config []
   {:datastore (sql-database {:connection-uri postgres-uri})

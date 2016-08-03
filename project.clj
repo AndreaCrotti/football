@@ -42,6 +42,7 @@
                  [clj-postgresql "0.4.0"]
                  [org.clojure/java.jdbc "0.4.2"]
                  [yesql "0.5.1"]
+                 [com.layerware/hugsql "0.4.7"]
                  [ragtime "0.5.2"]
                  [ragtime/ragtime.lein "0.3.9"]
 
