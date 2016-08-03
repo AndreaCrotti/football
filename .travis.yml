@@ -13,4 +13,4 @@ services:
 
 
 before_script:
-  - psql -c 'CREATE DATABASE football;' -U postgres
+  - psql -c "CREATE DATABASE football; CREATE ROLE football WITH SUPERUSER LOGIN PASSWORD 'football'" -U postgres
